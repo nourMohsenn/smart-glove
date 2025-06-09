@@ -191,10 +191,10 @@ export default function ObjectDetectV3Arabic() {
   };
 
   return (
-    <div className="bg-[#C1CFCD]  min-h-screen p-5 flex flex-col items-center">
+    <div className="bg-[#C1CFCD]  min-h-screen p-5 flex flex-col items-center relative">
       
-      <img src={upperEllipse} alt="*Decoration*" className="absolute top-0 right-0 z-0" />
-      <img src={lowerEllipse} alt="*Decoration*" className="absolute bottom-0 left-0 z-0" />
+      <img src={upperEllipse} alt="*Decoration*" className="w-2/12 absolute top-0 right-0 z-0" />
+      <img src={lowerEllipse} alt="*Decoration*" className="w-2/12 absolute bottom-0 left-0 z-0" />
       <h3 className=" text-center border text-green-700 border-gray-700 p-5 z-10  rounded-2xl top-5 shadow-2xl bg-[#C1CFCD]">{status}</h3>
       <div className="flex flex-col lg:flex-row items-center justify-center w-full mb-5 z-10">
         <div className="flex flex-col items-center w-full">
