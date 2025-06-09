@@ -190,8 +190,8 @@ export default function ObjectDetectV3Arabic() {
   return (
     <div className="bg-[#C1CFCD]  min-h-screen p-5 flex flex-col items-center">
       
-      <div className="w-50 h-50 bg-gray-700 rounded-full absolute -top-24 -right-24 z-0" />
-      <div className="w-50 h-50 bg-gray-700 rounded-full absolute -bottom-24 -left-24 z-0" />
+      {/* <div className="w-50 h-50 bg-gray-700 rounded-full absolute -top-24 -right-24 z-0" />
+      <div className="w-50 h-50 bg-gray-700 rounded-full absolute -bottom-24 -left-24 z-0" /> */}
       <h3 className=" text-center border text-green-700 border-gray-700 p-5 z-10  rounded-2xl top-5 shadow-2xl bg-[#C1CFCD]">{status}</h3>
       <div className="flex flex-col lg:flex-row items-center justify-center w-full mb-5">
         <div className="flex flex-col items-center w-full">
