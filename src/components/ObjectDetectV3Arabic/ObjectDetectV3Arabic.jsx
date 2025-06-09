@@ -6,7 +6,7 @@ export default function ObjectDetectV3Arabic() {
   const imgRef = useRef(null);
   const [status, setStatus] = useState("Loading...");
   const [description, setDescription] = useState("");
-  const [objects, setObjects] = useState([]);
+  const [_, setObjects] = useState([]);
   const [imageCaptured, setImageCaptured] = useState(false);
   const modelRef = useRef(null);
   const intervalRef = useRef(null);
@@ -162,7 +162,7 @@ export default function ObjectDetectV3Arabic() {
               );
 
               const data = await res.json();
-              const translatedText = data.translated_text; // ✅ Fix applied here
+              const translatedText = data.translated_text; 
 
               setDescription(translatedText);
 
@@ -188,80 +188,54 @@ export default function ObjectDetectV3Arabic() {
   };
 
   return (
-    <div style={{ padding: 20, backgroundColor: "#ffaaaa" }}>
-      <h2 dir={docDir}>
-        {document.documentElement.lang == "en"
-          ? "Camera Feed"
-          : "تغذية الكاميرا"}
-      </h2>
-      <div
-        style={{
-          width: "400px",
-          height: "300px",
-          border: "2px solid black",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginBottom: "10px",
-        }}
-      >
-        <video
-          ref={videoRef}
-          width="400"
-          height="300"
-          autoPlay
-          style={{ objectFit: "cover" }}
-        />
-      </div>
+    <div className="bg-[#C1CFCD]  min-h-screen p-5 flex flex-col items-center">
+      
+      <div className="w-50 h-50 bg-gray-700 rounded-full absolute -top-24 -right-24 z-0" />
+      <div className="w-50 h-50 bg-gray-700 rounded-full absolute -bottom-24 -left-24 z-0" />
+      <h3 className=" text-center border text-green-700 border-gray-700 p-5 z-10  rounded-2xl top-5 shadow-2xl bg-[#C1CFCD]">{status}</h3>
+      <div className="flex flex-col lg:flex-row items-center justify-center w-full mb-5">
+        <div className="flex flex-col items-center w-full">
+          <h2 dir={docDir} className="p-2 text-lg">
+            {document.documentElement.lang == "en"
+              ? "Camera Feed"
+              : "تغذية الكاميرا"}
+          </h2>
+          <div
+            className="rounded-xl border-2 w-8/12 md:w-1/2 lg:w-10/12 border-gray-700 flex justify-center items-center mb-2 "
+          >
+            <video
+              ref={videoRef}
+              autoPlay
+              className="w-full h-full rounded-xl"
+            />
+          </div>
+        </div>
 
-      <h2 dir={docDir}>
-        {document.documentElement.lang == "en"
-          ? "Captured Image"
-          : "إلتقاط الصورة"}
-      </h2>
-      <div
-        style={{
-          width: "400px",
-          height: "300px",
-          border: "2px solid black",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginBottom: "10px",
-          backgroundColor: "gray",
-        }}
-      >
-        {imageCaptured ? (
-          <img
-            ref={imgRef}
+        <div className={`flex flex-col items-center w-full ${imageCaptured ? "" : "hidden"}`}>
+          <h2 dir={docDir} className="p-2 text-lg">
+            {document.documentElement.lang == "en"
+              ? "Captured Image"
+              : "إلتقاط الصورة"}
+          </h2>
+          
+          <div className="rounded-xl min-h-20 border-2 w-8/12 md:w-1/2 lg:w-10/12 border-gray-700 flex justify-center items-center mb-2 bg-gray-200">
+              <img
+                ref={imgRef}
+                alt="Captured"
+                className="w-full h-full rounded-xl"
+              />
+            
+          </div>
+
+          <canvas
+            ref={canvasRef}
             width="400"
             height="300"
-            alt="Captured"
-            style={{ objectFit: "cover" }}
+            style={{ display: "none" }}
           />
-        ) : (
-          "Waiting for capture..."
-        )}
+        </div>
       </div>
-
-      <canvas
-        ref={canvasRef}
-        width="400"
-        height="300"
-        style={{ display: "none" }}
-      />
-
-      <h2>Detected Objects</h2>
-      <ul>
-        {objects.length > 0 ? (
-          objects.map((obj, i) => <li key={i}>{obj.class}</li>)
-        ) : (
-          <li>No objects detected</li>
-        )}
-      </ul>
-
-      <h3 style={{ color: "green" }}>{status}</h3>
-      <h3>{description}</h3>
+      <div className={`py-2 px-5 border-2 border-black text-[#C1CFCD] rounded-xl bg-gray-700 mt-4 ${imageCaptured ? "" : "hidden"}`}>{description == "" ? "No objects detected": description}</div>
     </div>
   );
 }

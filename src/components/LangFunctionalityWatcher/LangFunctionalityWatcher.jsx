@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import blindPerson from '../../assets/blindPerson.svg'
-import deafPerson from '../../assets/deafPng.webp'
 
 export default function LangFunctionalityWatcher() {
   const [message, setMessage] = useState(
@@ -49,32 +47,15 @@ export default function LangFunctionalityWatcher() {
   }, [navigate]);
 
   return (
-    <div style={{ padding: 20 }}>
-      <h2>{message}</h2>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <div
-          id="deaf"
-          style={{
-            textAlign: "center",
-            fontSize: "2rem",
-            backgroundColor: "bisque",
-          }}
-        >
-          <p>I can hear you 😀</p>
-          <img src={deafPerson} alt="" />
-        </div>
-        <div
-          id="blind"
-          style={{
-            textAlign: "center",
-            fontSize: "2rem",
-            backgroundColor: "burlywood",
-          }}
-        >
-          <p>and I can see you too 😎</p>
-          <img src={blindPerson} style={{ width: "58%" }} alt="" />
-        </div>
-      </div>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#C1CFCD] ">
+      <div className="w-50 h-50 bg-gray-700 rounded-full absolute -top-24 -right-24 z-0" />
+      <div className="w-50 h-50 bg-gray-700 rounded-full absolute -bottom-24 -left-24 z-0" />
+      <h2 className=" text-center p-5 z-10 absolute rounded-2xl top-5 shadow-2xl border border-gray-700 bg-[#C1CFCD]">{message}</h2>
+
+      <p className="text-4xl p-2 py-5">Smart Glove</p>
+      <img src="/src/assets/logo.png" alt="logo" className="rounded-full w-1/2 lg:w-1/4" />
+      <p className="p-2 py-5 text-gray-700">Your accessibility, our mission.</p>
+
     </div>
   );
 }
