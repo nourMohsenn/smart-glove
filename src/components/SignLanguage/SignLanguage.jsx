@@ -5,6 +5,8 @@ import micSvgOn from '../../assets/mic-show-svgrepo-com.svg'
 import micSvgOff from '../../assets/mic-off-svgrepo-com.svg'
 import chatGreen from '../../assets/chat-pl-green.svg'
 import chatOrange from '../../assets/chat-pl-orange.svg'
+import upperEllipse from "../../assets/upper-ellipse.svg";
+import lowerEllipse from "../../assets/lower-ellipse.svg";
 import { useNavigate } from "react-router-dom";
 
 
@@ -71,7 +73,6 @@ export default function SignLanguage() {
     if (SpeechRecognition) {
       const recognition = new SpeechRecognition();
       recognition.lang = document.documentElement.lang || "en-US";
-      // recognition.lang = window.navigator.language || "en-US";
       recognition.interimResults = true;
 
       recognition.onresult = (event) => {
@@ -138,113 +139,77 @@ export default function SignLanguage() {
     window.speechSynthesis.cancel(); // cancel previous speech
     window.speechSynthesis.speak(utterance);
   }
-  return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        backgroundColor: "green",
-      }}
-    >
-      {/* Normal Person */}
-      <div
-        id="normalPerson"
-        style={{
-          backgroundColor: "burlywood",
-          width: "400px",
-          padding: "10px",
-        }}
-      >
-        <h3 dir={docDir}>
-          {document.documentElement.lang == "en"
-            ? "Normal Person"
-            : "شخص طبيعي"}
-        </h3>
-        <div style={{ position: "relative" }}>
-          <img src={chatOrange} alt="" style={{ width: "100%" }} />
-          <textarea
-            dir={docDir}
-            id="result"
-            value={normalText}
-            readOnly
-            style={{
-              width: "98%",
-              height: "100px",
-              position: "absolute",
-              top: "100px",
-              left: "0",
-              backgroundColor: "transparent",
-              outline: "0px",
-              border: "none",
-              fontSize: "2rem",
-            }}
-          ></textarea>
-        </div>
-        <div
-          style={{
-            marginTop: "10px",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <img src={normalSvg} alt="Normal Person" style={{ width: "90%" }} />
-        </div>
-        <div
-          style={{
-            marginTop: "10px",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <img
-            src={normalSpeak ? micSvgOn : micSvgOff}
-            onClick={startRecognition}
-            style={{ width: "50px" }}
-          />
-          {/* <img src={speakerMutedSvg} onClick={stopRecognition} style={{ width: "50px" }}/> */}
-        </div>
-      </div>
 
-      {/* Deaf Person */}
-      <div
-        id="deafPerson"
-        style={{ backgroundColor: "bisque", width: "400px", padding: "10px" }}
-      >
-        <h3 dir={docDir}>
-          {document.documentElement.lang == "en" ? "Deaf Person" : "شخص اصم"}
-        </h3>
-        <div style={{ backgroundColor: "", position: "relative" }}>
-          <img src={chatGreen} style={{ width: "100%" }} alt="" />
-          <textarea
-            dir={docDir}
-            id="deaf"
-            style={{
-              width: "98%",
-              height: "100px",
-              position: "absolute",
-              top: "100px",
-              left: "0",
-              backgroundColor: "transparent",
-              outline: "0px",
-              border: "none",
-              fontSize: "2rem",
-            }}
-            value={deafText}
-            readOnly
-          ></textarea>
+  return (
+    <div className="bg-[#C1CFCD] min-h-screen p-5 flex flex-col items-center relative">
+      <img src={upperEllipse} alt="*Decoration*" className="w-2/12 absolute top-0 right-0 z-0" />
+      <img src={lowerEllipse} alt="*Decoration*" className="w-2/12 absolute bottom-0 left-0 z-0" />
+      <h3 className="text-center border text-green-700 border-gray-700 p-5 z-10 rounded-2xl top-5 shadow-2xl bg-[#C1CFCD] mb-8">
+        {document.documentElement.lang === "en"
+          ? "Sign Language Communication"
+          : "التواصل بلغة الإشارة"}
+      </h3>
+      <div className="flex flex-col lg:flex-row items-start justify-center w-full gap-8 z-10">
+        {/* Normal Person */}
+        <div className="flex flex-col items-center bg-orange-100 border-2 border-gray-700 rounded-xl shadow-lg w-full max-w-md p-5">
+          <h3 dir={docDir} className="text-xl font-semibold mb-2">
+            {document.documentElement.lang === "en"
+              ? "Normal Person"
+              : "شخص طبيعي"}
+          </h3>
+          <div className="relative w-full mb-2">
+            <img src={chatOrange} alt="" className="w-full" />
+            <textarea
+              dir={docDir}
+              id="result"
+              value={normalText}
+              readOnly
+              className="absolute top-[100px] left-0 w-[98%] h-[100px] bg-transparent outline-none border-none text-2xl resize-none"
+              style={{ background: "transparent" }}
+            ></textarea>
+          </div>
+          <div className="flex justify-center w-full mt-2">
+            <img src={normalSvg} alt="Normal Person" className="w-3/4" />
+          </div>
+          <div className="flex justify-center w-full mt-2">
+            <button
+              onClick={startRecognition}
+              className="focus:outline-none"
+              aria-label="Start Speech Recognition"
+            >
+              <img
+                src={normalSpeak ? micSvgOn : micSvgOff}
+                style={{ width: "50px" }}
+                alt="Mic"
+              />
+            </button>
+          </div>
         </div>
-        <div
-          style={{
-            marginTop: "10px",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <img src={deafSvg} alt="Deaf Person" style={{ width: "90%" }} />
+
+        {/* Deaf Person */}
+        <div className="flex flex-col items-center bg-green-100 border-2 border-gray-700 rounded-xl shadow-lg w-full max-w-md p-5">
+          <h3 dir={docDir} className="text-xl font-semibold mb-2">
+            {document.documentElement.lang === "en" ? "Deaf Person" : "شخص اصم"}
+          </h3>
+          <div className="relative w-full mb-2">
+            <img src={chatGreen} className="w-full" alt="" />
+            <textarea
+              dir={docDir}
+              id="deaf"
+              className="absolute top-[100px] left-0 w-[98%] h-[100px] bg-transparent outline-none border-none text-2xl resize-none"
+              value={deafText}
+              readOnly
+              style={{ background: "transparent" }}
+            ></textarea>
+          </div>
+          <div className="flex justify-center w-full mt-2">
+            <img src={deafSvg} alt="Deaf Person" className="w-3/4" />
+          </div>
         </div>
       </div>
-      <button onClick={sayMessage} on>
-        hello
+      {/* Example button for speech synthesis */}
+      <button onClick={sayMessage} className="mt-8 py-2 px-4 bg-gray-700 text-white rounded-xl shadow-lg">
+        {document.documentElement.lang === "en" ? "Say Hello" : "قل مرحبا"}
       </button>
     </div>
   );
