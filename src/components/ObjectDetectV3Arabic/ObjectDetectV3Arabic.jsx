@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import lowerEllipse from "../../assets/lower-ellipse.svg";
+import upperEllipse from "../../assets/upper-ellipse.svg";
+
 export default function ObjectDetectV3Arabic() {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
@@ -190,10 +193,10 @@ export default function ObjectDetectV3Arabic() {
   return (
     <div className="bg-[#C1CFCD]  min-h-screen p-5 flex flex-col items-center">
       
-      {/* <div className="w-50 h-50 bg-gray-700 rounded-full absolute -top-24 -right-24 z-0" />
-      <div className="w-50 h-50 bg-gray-700 rounded-full absolute -bottom-24 -left-24 z-0" /> */}
+      <img src={upperEllipse} alt="*Decoration*" className="absolute top-0 right-0 z-0" />
+      <img src={lowerEllipse} alt="*Decoration*" className="absolute bottom-0 left-0 z-0" />
       <h3 className=" text-center border text-green-700 border-gray-700 p-5 z-10  rounded-2xl top-5 shadow-2xl bg-[#C1CFCD]">{status}</h3>
-      <div className="flex flex-col lg:flex-row items-center justify-center w-full mb-5">
+      <div className="flex flex-col lg:flex-row items-center justify-center w-full mb-5 z-10">
         <div className="flex flex-col items-center w-full">
           <h2 dir={docDir} className="p-2 text-lg">
             {document.documentElement.lang == "en"
@@ -201,12 +204,12 @@ export default function ObjectDetectV3Arabic() {
               : "تغذية الكاميرا"}
           </h2>
           <div
-            className="rounded-xl border-2 w-8/12 md:w-1/2 lg:w-10/12 border-gray-700 flex justify-center items-center mb-2 "
+            className="rounded-xl border-2 w-8/12 md:w-1/2 lg:w-7/12 border-gray-700 flex justify-center items-center mb-2 z-10"
           >
             <video
               ref={videoRef}
               autoPlay
-              className="w-full h-full rounded-xl"
+              className="w-full h-full rounded-xl z-10"
             />
           </div>
         </div>
@@ -218,7 +221,7 @@ export default function ObjectDetectV3Arabic() {
               : "إلتقاط الصورة"}
           </h2>
           
-          <div className="rounded-xl min-h-20 border-2 w-8/12 md:w-1/2 lg:w-10/12 border-gray-700 flex justify-center items-center mb-2 bg-gray-200">
+          <div className="rounded-xl min-h-20 border-2 w-8/12 md:w-1/2 lg:w-7/12 border-gray-700 flex justify-center items-center mb-2 bg-gray-200">
               <img
                 ref={imgRef}
                 alt="Captured"
