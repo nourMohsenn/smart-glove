@@ -53,7 +53,7 @@ export default function LangFunctionalityWatcher() {
       <h2 className=" text-center p-5 z-10 absolute rounded-2xl top-5 shadow-2xl border border-gray-700 bg-[#C1CFCD]">{message}</h2>
 
       <p className="text-4xl p-2 py-5">Smart Glove</p>
-      <img src="/src/assets/logo.png" alt="logo" className="rounded-full w-1/2 lg:w-1/4" />
+      <img src="../../assets/logo.png" alt="logo" className="rounded-full w-1/2 lg:w-1/4" />
       <p className="p-2 py-5 text-gray-700">Your accessibility, our mission.</p>
 
     </div>
