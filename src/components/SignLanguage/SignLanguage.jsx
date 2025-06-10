@@ -128,10 +128,10 @@ export default function SignLanguage() {
     recognitionRef.current?.start();
   };
 
-  const stopRecognition = () => {
-    recognitionRef.current?.stop();
-    // setNormalSpeak(false)
-  };
+  // const stopRecognition = () => {
+  //   recognitionRef.current?.stop();
+  //   // setNormalSpeak(false)
+  // };
 
   function sayMessage() {
     const utterance = new SpeechSynthesisUtterance(`${document.documentElement.lang=='en'?"english conversation started":"المحادثة الصوتية بدأت"}`);
@@ -151,7 +151,7 @@ export default function SignLanguage() {
       </h3>
       <div className="flex flex-col lg:flex-row items-start justify-center w-full gap-8 z-10">
         {/* Normal Person */}
-        <div className="flex flex-col items-center bg-orange-100 border-2 border-gray-700 rounded-xl shadow-lg w-full max-w-md p-5">
+        <div className="flex flex-col items-center bg-orange-100 border-2 border-gray-700 rounded-xl shadow-lg w-full max-w-md p-5 relative">
           <h3 dir={docDir} className="text-xl font-semibold mb-2">
             {document.documentElement.lang === "en"
               ? "Normal Person"
@@ -171,7 +171,7 @@ export default function SignLanguage() {
           <div className="flex justify-center w-full mt-2">
             <img src={normalSvg} alt="Normal Person" className="w-3/4" />
           </div>
-          <div className="flex justify-center w-full mt-2">
+          <div className="flex absolute justify-center mt-2 right-3 bottom-3"> 
             <button
               onClick={startRecognition}
               className="focus:outline-none"
