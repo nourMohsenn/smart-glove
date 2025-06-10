@@ -141,7 +141,7 @@ export default function SignLanguage() {
   }
 
   return (
-    <div className="bg-[#C1CFCD] min-h-screen p-5 flex flex-col items-center relative">
+    <div className="bg-[#C1CFCD] min-h-screen p-5 flex flex-col items-center justify-center content-center relative">
       <img src={upperEllipse} alt="*Decoration*" className="w-2/12 absolute top-0 right-0 z-0" />
       <img src={lowerEllipse} alt="*Decoration*" className="w-2/12 absolute bottom-0 left-0 z-0" />
       <h3 className="text-center border text-green-700 border-gray-700 p-5 z-10 rounded-2xl top-5 shadow-2xl bg-[#C1CFCD] mb-8">
@@ -149,7 +149,7 @@ export default function SignLanguage() {
           ? "Sign Language Communication"
           : "التواصل بلغة الإشارة"}
       </h3>
-      <div className="flex flex-col lg:flex-row items-start justify-center w-full gap-8 z-10">
+      <div className="flex flex-col lg:flex-row items-center justify-center w-full gap-8 z-10">
         {/* Normal Person */}
         <div className="flex flex-col items-center bg-orange-100 border-2 border-gray-700 rounded-xl shadow-lg w-full max-w-md p-5 relative">
           <h3 dir={docDir} className="text-xl font-semibold mb-2">
