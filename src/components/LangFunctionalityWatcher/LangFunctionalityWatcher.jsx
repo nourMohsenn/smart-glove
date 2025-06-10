@@ -50,9 +50,9 @@ export default function LangFunctionalityWatcher() {
   }, [navigate]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-[#C1CFCD] ">
-      <img src={upperEllipse} alt="*Decoration*" className="absolute top-0 right-0 z-0" />
-      <img src={lowerEllipse} alt="*Decoration*" className="absolute bottom-0 left-0 z-0" />
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#C1CFCD] relative">
+      <img src={upperEllipse} alt="*Decoration*" className="w-2/12 absolute top-0 right-0 z-0" />
+      <img src={lowerEllipse} alt="*Decoration*" className="w-2/12 absolute bottom-0 left-0 z-0" />
       <h2 className=" text-center p-5 z-10 absolute rounded-2xl top-5 shadow-2xl border border-gray-700 bg-[#C1CFCD]">{message}</h2>
 
       <p className="text-4xl p-2 py-5">Smart Glove</p>
