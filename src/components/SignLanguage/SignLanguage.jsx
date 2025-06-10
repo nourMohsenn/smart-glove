@@ -134,7 +134,7 @@ export default function SignLanguage() {
   };
 
   function sayMessage() {
-    const utterance = new SpeechSynthesisUtterance("message");
+    const utterance = new SpeechSynthesisUtterance(`${document.documentElement.lang=='en'?"english conversation started":"المحادثة الصوتية بدأت"}`);
     utterance.lang = document.documentElement.lang;
     window.speechSynthesis.cancel(); // cancel previous speech
     window.speechSynthesis.speak(utterance);
@@ -209,7 +209,7 @@ export default function SignLanguage() {
       </div>
       {/* Example button for speech synthesis */}
       <button onClick={sayMessage} className="mt-8 py-2 px-4 bg-gray-700 text-white rounded-xl shadow-lg">
-        {document.documentElement.lang === "en" ? "Say Hello" : "قل مرحبا"}
+        {document.documentElement.lang === "en" ? "start" : "ابدأ"}
       </button>
     </div>
   );
