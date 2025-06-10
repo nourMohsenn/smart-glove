@@ -171,7 +171,8 @@ export default function SignLanguage() {
           <div className="flex justify-center w-full mt-2">
             <img src={normalSvg} alt="Normal Person" className="w-3/4" />
           </div>
-          <div className="flex absolute justify-center mt-2 right-3 bottom-3"> 
+          <div className="flex flex-col items-center absolute justify-center mt-2 right-3 bottom-3">
+            {/* Arrow pointing to the mic button */}
             <button
               onClick={startRecognition}
               className="focus:outline-none"
@@ -179,13 +180,17 @@ export default function SignLanguage() {
             >
               <img
                 src={normalSpeak ? micSvgOn : micSvgOff}
-                style={{ width: "50px" }}
+                className="w-[50px]"
                 alt="Mic"
               />
             </button>
+            <span className="flex flex-col items-center mt-3 justify-center">
+              <span className="text-[#ff9800] font-bold text-base -mt-2 drop-shadow-sm whitespace-nowrap">
+                {document.documentElement.lang === "en" ? "Tap to speak" : "اضغط للتحدث"}
+              </span>
+            </span>
           </div>
         </div>
-
         {/* Deaf Person */}
         <div className="flex flex-col items-center bg-green-100 border-2 border-gray-700 rounded-xl shadow-lg w-full max-w-md p-5">
           <h3 dir={docDir} className="text-xl font-semibold mb-2">
