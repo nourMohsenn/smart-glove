@@ -164,7 +164,7 @@ export default function SignLanguage() {
               id="result"
               value={normalText}
               readOnly
-              className="absolute top-[100px] left-0 w-[98%] h-[100px] bg-transparent outline-none border-none text-2xl resize-none"
+              className="absolute top-[100px] left-0 w-[98%] h-[100px] bg-transparent outline-none border-none text-2xl resize-none px-2"
               style={{ background: "transparent" }}
             ></textarea>
           </div>
@@ -196,7 +196,7 @@ export default function SignLanguage() {
             <textarea
               dir={docDir}
               id="deaf"
-              className="absolute top-[100px] left-0 w-[98%] h-[100px] bg-transparent outline-none border-none text-2xl resize-none"
+              className="absolute top-[100px] left-0 w-[98%] h-[100px] bg-transparent outline-none border-none text-2xl resize-none px-2"
               value={deafText}
               readOnly
               style={{ background: "transparent" }}
