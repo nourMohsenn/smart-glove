@@ -32,10 +32,16 @@ export default function LangFunctionalityWatcher() {
           }
 
           // Navigate based on functionality
-          if (data.functionality === "object-detection") {
-            navigate("/object-detection");
-          } else if (data.functionality === "sign-language") {
-            navigate("/sign-language");
+          if (data.functionality === "object-detection" && data.lang=="en") {
+            navigate("/object-detection-en");
+          } else if(data.functionality === "object-detection" && data.lang=="ar"){
+            navigate("/object-detection-ar");
+          } 
+           else if (data.functionality === "sign-language" && data.lang == "ar") {
+            navigate("/sign-language-ar");
+          }
+           else if (data.functionality === "sign-language" && data.lang == "en") {
+            navigate("/sign-language-en");
           }
         }
       } catch (err) {

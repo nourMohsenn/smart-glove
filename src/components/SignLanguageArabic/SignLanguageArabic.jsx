@@ -17,8 +17,8 @@ export default function SignLanguage() {
   const intervalRef = useRef(null);
   const lastSpokenMessageRef = useRef(""); // Prevent repeating the same message
   const [btnStart, setBtnStart] = useState(false);
-  let docDir = "ltr";
-  document.documentElement.lang = "en";
+  let docDir = "rtl";
+  document.documentElement.lang = "ar";
   //listen for changes
   const intervalRef2 = useRef(null);
   const navigate = useNavigate();
@@ -38,19 +38,19 @@ export default function SignLanguage() {
 
           // Change HTML language
 
-          document.documentElement.lang = "en";
+          document.documentElement.lang = "ar";
 
           // Navigate based on functionality
           if (data.functionality === "object-detection" && data.lang=="en") {
             navigate("/object-detection-en");
-          }else if(data.functionality === "object-detection" && data.lang=="ar"){
+          } else if(data.functionality === "object-detection" && data.lang=="ar"){
             navigate("/object-detection-ar");
           }
            else if (
             data.functionality === "sign-language" &&
-            data.lang == "ar"
+            data.lang == "en"
           ) {
-            navigate("/sign-language-ar");
+            navigate("/sign-language-en");
           }
         }
       } catch (err) {
@@ -64,6 +64,10 @@ export default function SignLanguage() {
     return () => clearInterval(intervalRef2.current);
   }, [navigate]);
 
+  //set document direction
+  if (document.documentElement.lang !== "en") {
+    docDir = "rtl";
+  }
 
   // Set up Speech Recognition on mount
   useEffect(() => {
@@ -128,13 +132,17 @@ export default function SignLanguage() {
     recognitionRef.current?.start();
   };
 
+  // const stopRecognition = () => {
+  //   recognitionRef.current?.stop();
+  //   // setNormalSpeak(false)
+  // };
 
   function sayMessage() {
     if (!btnStart) {
       const utterance = new SpeechSynthesisUtterance(
-        `${"english conversation started"}`
+        `${"المحادثة الصوتية بدأت"}`
       );
-      utterance.lang = "en";
+      utterance.lang = "ar";
       window.speechSynthesis.cancel(); // cancel previous speech
       window.speechSynthesis.speak(utterance);
     }
@@ -154,13 +162,13 @@ export default function SignLanguage() {
         className="w-2/12 absolute bottom-0 left-0 z-0"
       />
       <h3 className="text-center border text-green-700 border-gray-700 p-5 z-10 rounded-2xl top-5 shadow-2xl bg-[#C1CFCD] mb-8">
-        Sign Language Communication
+        التواصل بلغة الإشارة
       </h3>
       <div className="flex flex-col lg:flex-row items-center justify-center w-full gap-8 z-10">
         {/* Normal Person */}
         <div className="flex flex-col items-center bg-orange-100 border-2 border-gray-700 rounded-xl shadow-lg w-full max-w-md p-5 relative">
           <h3 dir={docDir} className="text-xl font-semibold mb-2">
-            Normal Person
+            شخص طبيعي
           </h3>
           <div className="relative w-full mb-2">
             <img src={chatOrange} alt="" className="w-full" />
@@ -191,7 +199,7 @@ export default function SignLanguage() {
             </button>
             <span className="flex flex-col items-center mt-3 justify-center">
               <span className="text-[#ff9800] font-bold text-base -mt-2 drop-shadow-sm whitespace-nowrap">
-                Tap to speak
+                اضغط للتحدث
               </span>
             </span>
           </div>
@@ -199,7 +207,7 @@ export default function SignLanguage() {
         {/* Deaf Person */}
         <div className="flex flex-col items-center bg-green-100 border-2 border-gray-700 rounded-xl shadow-lg w-full max-w-md p-5">
           <h3 dir={docDir} className="text-xl font-semibold mb-2">
-            Deaf Person
+            شخص اصم
           </h3>
           <div className="relative w-full mb-2">
             <img src={chatGreen} className="w-full" alt="" />
@@ -224,7 +232,7 @@ export default function SignLanguage() {
           btnStart ? "bg-green-700" : "bg-gray-700"
         } text-white rounded-xl shadow-lg`}
       >
-        start
+        ابدأ
       </button>
     </div>
   );

@@ -3,24 +3,25 @@ import { useNavigate } from "react-router-dom";
 import lowerEllipse from "../../assets/lower-ellipse.svg";
 import upperEllipse from "../../assets/upper-ellipse.svg";
 
-export default function ObjectDetectV3Arabic() {
+export default function ObjectDetectionArabic() {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const imgRef = useRef(null);
-  const [status, setStatus] = useState("Loading...");
+  const [status, setStatus] = useState("... جاري التحميل");
   const [description, setDescription] = useState("");
   const [_, setObjects] = useState([]);
   const [imageCaptured, setImageCaptured] = useState(false);
   const modelRef = useRef(null);
   const intervalRef = useRef(null);
-  document.documentElement.lang == "en";
-  // let stream;
-  let docDir = "ltr";
+
+  document.documentElement.lang = "ar";
   const backendURL =
     "https://flask-object-detect.vercel.app/check_trigger?id=123456";
   //listen for changes
   const intervalRef2 = useRef(null);
   const navigate = useNavigate();
+
+  let docDir = "rtl";
 
   //============
   useEffect(() => {
@@ -32,13 +33,13 @@ export default function ObjectDetectV3Arabic() {
         const data = await res.json();
 
         if (data.waiting) {
-          console.log("Waiting for lang and functionality...");
+          console.log("... انتظار اللغة والقسم");
         } else {
           clearInterval(intervalRef.current);
 
           // Change HTML language
-          if (data.functionality === "object-detection" && data.lang == "ar") {
-            navigate("/object-detection-ar");
+          if (data.functionality === "object-detection" && data.lang == "en") {
+            navigate("/object-detection-en");
           } else if (
             data.functionality === "sign-language" &&
             data.lang == "ar"
@@ -83,7 +84,7 @@ export default function ObjectDetectV3Arabic() {
     const loadModel = async () => {
       const cocoSsd = await window.cocoSsd.load();
       modelRef.current = cocoSsd;
-      setStatus("Model loaded successfully");
+      setStatus("تم تحميل الموديل بنجاح");
       startCamera();
     };
 
@@ -111,7 +112,7 @@ export default function ObjectDetectV3Arabic() {
       const data = await res.json();
       if (data.triggered) {
         clearInterval(intervalRef.current);
-        setStatus("Triggered! Capturing...");
+        setStatus("تم التحفيز , يتم الان التقاط الصورة");
         captureAndDetect();
       }
     } catch (err) {
@@ -149,12 +150,34 @@ export default function ObjectDetectV3Arabic() {
             )
             .join(" and ");
 
-          setDescription(desc);
-          const utterance = new SpeechSynthesisUtterance(desc);
-          utterance.lang = "en";
-          window.speechSynthesis.speak(utterance);
+          if (document.documentElement.lang === "ar") {
+            try {
+              const res = await fetch(
+                "https://flask-translator.vercel.app/translate",
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({ text: desc }),
+                }
+              );
 
-          setStatus("Detection done. Waiting for next trigger...");
+              const data = await res.json();
+              const translatedText = data.translated_text;
+
+              setDescription(translatedText);
+
+              const utterance = new SpeechSynthesisUtterance(translatedText);
+              utterance.lang = "ar";
+              window.speechSynthesis.speak(utterance);
+            } catch (err) {
+              console.error("Translation or speech failed:", err);
+              setDescription(desc); // fallback
+            }
+          }
+
+          setStatus("تم التحديد و يتم الانتظار للتحفيز التالي");
           intervalRef.current = setInterval(checkTrigger, 5000);
         };
       }
@@ -179,7 +202,7 @@ export default function ObjectDetectV3Arabic() {
       <div className="flex flex-col lg:flex-row items-center justify-center w-full mb-5 z-10">
         <div className="flex flex-col items-center w-full">
           <h2 dir={docDir} className="p-2 text-lg">
-            Camera Feed
+            تغذية الكاميرا
           </h2>
           <div className="rounded-xl border-2 w-8/12 md:w-1/2 lg:w-7/12 border-gray-700 flex justify-center items-center mb-2 z-10">
             <video
@@ -196,7 +219,7 @@ export default function ObjectDetectV3Arabic() {
           }`}
         >
           <h2 dir={docDir} className="p-2 text-lg">
-            Captured Image
+            إلتقاط الصورة
           </h2>
 
           <div className="rounded-xl min-h-20 border-2 w-8/12 md:w-1/2 lg:w-7/12 border-gray-700 flex justify-center items-center mb-2 bg-gray-200">
@@ -220,7 +243,7 @@ export default function ObjectDetectV3Arabic() {
           imageCaptured ? "" : "hidden"
         }`}
       >
-        {description == "" ? "No objects detected" : description}
+        {description == "" ? "لم يتم تحديد شئ" : description}
       </div>
     </div>
   );
