@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/logo.png"; // Ensure the logo is imported correctly
+import logo from "../../assets/logo.png"; 
 import lowerEllipse from "../../assets/lower-ellipse.svg";
 import upperEllipse from "../../assets/upper-ellipse.svg";
+import Footer from "../Footer";
 
 export default function LangFunctionalityWatcher() {
   const [message, setMessage] = useState(
@@ -61,10 +62,14 @@ export default function LangFunctionalityWatcher() {
       <img src={lowerEllipse} alt="*Decoration*" className="w-2/12 absolute bottom-0 left-0 z-0" />
       <h2 className=" text-center p-5 z-10 absolute rounded-2xl top-5 shadow-2xl border border-gray-700 bg-[#C1CFCD]">{message}</h2>
 
-      <p className="text-4xl p-2 py-5">Smart Glove</p>
+      <div className="flex flex-col md:flex-row items-center mt-24 mb-10">
+        <p className="text-4xl p-2">Smart Glove</p>
+        <p className="text-4xl p-2">القفاز الذكي</p>
+      </div>
       <img src={logo} alt="logo" className="rounded-full w-1/2 lg:w-1/4" />
       <p className="p-2 py-5 text-gray-700">Your accessibility, our mission.</p>
 
+      <Footer/>
     </div>
   );
 }

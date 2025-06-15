@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import lowerEllipse from "../../assets/lower-ellipse.svg";
 import upperEllipse from "../../assets/upper-ellipse.svg";
+import Footer from "../Footer";
 
 export default function ObjectDetectionArabic() {
   const videoRef = useRef(null);
@@ -245,6 +246,8 @@ export default function ObjectDetectionArabic() {
       >
         {description == "" ? "لم يتم تحديد شئ" : description}
       </div>
+
+      <Footer/>
     </div>
   );
 }

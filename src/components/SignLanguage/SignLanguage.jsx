@@ -8,6 +8,7 @@ import chatOrange from "../../assets/chat-pl-orange.svg";
 import upperEllipse from "../../assets/upper-ellipse.svg";
 import lowerEllipse from "../../assets/lower-ellipse.svg";
 import { useNavigate } from "react-router-dom";
+import Footer from "../Footer";
 
 export default function SignLanguage() {
   const [normalText, setNormalText] = useState("");
@@ -226,6 +227,8 @@ export default function SignLanguage() {
       >
         start
       </button>
+
+      <Footer/>
     </div>
   );
 }

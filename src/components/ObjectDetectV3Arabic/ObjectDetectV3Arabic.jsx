@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import lowerEllipse from "../../assets/lower-ellipse.svg";
 import upperEllipse from "../../assets/upper-ellipse.svg";
+import Footer from "../Footer";
 
 export default function ObjectDetectV3Arabic() {
   const videoRef = useRef(null);
@@ -222,6 +223,8 @@ export default function ObjectDetectV3Arabic() {
       >
         {description == "" ? "No objects detected" : description}
       </div>
+
+      <Footer/>
     </div>
   );
 }
