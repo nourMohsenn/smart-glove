@@ -65,6 +65,17 @@ useEffect(()=>{
         console.error("Error fetching lang/functionality:", err);
         console.log("Error connecting to backend.");
       }
+      //===============try
+
+useEffect(()=>{
+
+
+   const utterance = new SpeechSynthesisUtterance("object detection mode started");
+          utterance.lang = "en";
+          window.speechSynthesis.speak(utterance);
+
+},[])
+  //============
     };
 
     intervalRef2.current = setInterval(checkLangFunctionality, 2000);
