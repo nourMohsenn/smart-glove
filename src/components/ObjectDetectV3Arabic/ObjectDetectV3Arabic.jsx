@@ -22,7 +22,16 @@ export default function ObjectDetectV3Arabic() {
   //listen for changes
   const intervalRef2 = useRef(null);
   const navigate = useNavigate();
+//===============try
 
+useEffect(()=>{
+
+
+   const utterance = new SpeechSynthesisUtterance("object detection mode started");
+          utterance.lang = "en";
+          window.speechSynthesis.speak(utterance);
+
+},[])
   //============
   useEffect(() => {
     const checkLangFunctionality = async () => {
